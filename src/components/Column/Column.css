@@ -1,0 +1,160 @@
+.column {
+  flex: 1;
+  min-width: 280px;
+  background-color: #f4f5f7;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 140px);
+  transition: background-color 0.2s ease;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #ddd;
+}
+
+.column-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #172b4d;
+  margin: 0;
+}
+
+.column-count {
+  background-color: #e0e0e0;
+  color: #172b4d;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.column-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drop-indicator {
+  height: 4px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #667eea 10%, 
+    #764ba2 90%, 
+    transparent 100%);
+  border-radius: 2px;
+  margin: 6px 0;
+  animation: pulse-glow 1s ease-in-out infinite;
+  box-shadow: 0 0 12px rgba(102, 126, 234, 0.6);
+  position: relative;
+}
+
+.drop-indicator::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: #667eea;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(102, 126, 234, 0.9);
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scaleX(0.98);
+    box-shadow: 0 0 8px rgba(102, 126, 234, 0.4);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+    box-shadow: 0 0 16px rgba(102, 126, 234, 0.8);
+  }
+}
+
+.empty-state {
+  text-align: center;
+  color: #6b778c;
+  font-size: 14px;
+  padding: 40px 20px;
+  font-style: italic;
+}
+
+/* Drag and drop states */
+.column.drag-over {
+  background-color: #e3f2fd;
+  border: 2px dashed #2196f3;
+}
+
+.column.dragging-active {
+  background-color: #fafafa;
+}
+
+.column.hidden {
+  display: none;
+}
+
+/* Scrollbar styling */
+.column-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.column-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.column-content::-webkit-scrollbar-thumb {
+  background: #c1c7d0;
+  border-radius: 4px;
+}
+
+.column-content::-webkit-scrollbar-thumb:hover {
+  background: #a5adba;
+}
+
+/* Responsive design */
+@media (max-width: 968px) {
+  .column {
+    min-width: 100%;
+    max-height: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .column {
+    padding: 12px;
+  }
+
+  .column-header {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+
+  .column-title {
+    font-size: 16px;
+  }
+
+  .column-count {
+    font-size: 12px;
+    padding: 2px 8px;
+  }
+
+  .task-list {
+    gap: 10px;
+  }
+}
