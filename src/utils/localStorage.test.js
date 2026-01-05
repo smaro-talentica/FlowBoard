@@ -15,6 +15,14 @@ describe('localStorage utilities', () => {
   beforeEach(() => {
     localStorage.clear();
     jest.clearAllMocks();
+    // Suppress console.error and console.warn during tests
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+    jest.spyOn(console, 'warn').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    console.error.mockRestore();
+    console.warn.mockRestore();
   });
 
   describe('Basic Storage Operations', () => {

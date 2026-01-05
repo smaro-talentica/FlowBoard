@@ -21,6 +21,9 @@ describe('exportHelpers', () => {
   ];
 
   beforeEach(() => {
+    // Suppress console.error during tests
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+    
     // Mock URL.createObjectURL and URL.revokeObjectURL
     global.URL.createObjectURL = jest.fn(() => 'mock-url');
     global.URL.revokeObjectURL = jest.fn();
@@ -42,6 +45,7 @@ describe('exportHelpers', () => {
 
   afterEach(() => {
     jest.clearAllMocks();
+    console.error.mockRestore();
   });
 
   describe('exportToJSON', () => {
